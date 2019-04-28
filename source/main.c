@@ -63,9 +63,8 @@ int   asm_opt[8];	/* assembler options */
 int
 main(int argc, char **argv)
 {
-	FILE *fp, *ipl;
+	FILE *fp;
 	char *p;
-	char  cmd[80];
 	int i, j;
 	int file;
 	int ram_bank;
