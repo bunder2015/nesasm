@@ -482,7 +482,7 @@ push_val(int type)
 				continue;
 			else
 				break;
-			if (c >= mul)
+			if (c >= (char)mul)
 				break;
 			val = (val * mul) + c;
 		}

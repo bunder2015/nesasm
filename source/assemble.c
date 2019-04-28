@@ -435,6 +435,8 @@ do_else(int *ip)
 {
 	if (!in_if)
 		fatal_error("Unexpected ELSE!");
+
+	(void)(ip);
 }
 
 /* .endif pseudo */
@@ -444,6 +446,8 @@ do_endif(int *ip)
 {
 	if (!in_if)
 		fatal_error("Unexpected ENDIF!");
+
+	(void)(ip);
 }
 
 /* .ifdef/.ifndef pseudo */

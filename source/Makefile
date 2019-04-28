@@ -1,7 +1,7 @@
 RM       = rm -f
 CC       = gcc
 
-CFLAGS   = -O2 -Wall
+CFLAGS   = -O2 -Wall -Wextra
 
 OBJS     = main.o input.o assemble.o expr.o code.o command.o \
          macro.o func.o proc.o symbol.o pcx.o output.o crc.o \

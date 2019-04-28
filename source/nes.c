@@ -40,6 +40,8 @@ nes_write_header(FILE *f, int banks)
 
 	/* write */
 	fwrite(&header, sizeof(header), 1, f);
+
+	(void)(banks);
 }
 
 
@@ -177,7 +179,7 @@ nes_inesprg(int *ip)
 	if (!evaluate(ip, ';'))
 		return;
 
-	if ((value < 0) || (value > 64))
+	if (value > 64)
 	{
 		error("PRG bank value out of range!");
 
@@ -205,7 +207,7 @@ nes_ineschr(int *ip)
 	if (!evaluate(ip, ';'))
 		return;
 
-	if ((value < 0) || (value > 64))
+	if (value > 64)
 	{
 		error("CHR bank value out of range!");
 
@@ -233,7 +235,7 @@ nes_inesmap(int *ip)
 	if (!evaluate(ip, ';'))
 		return;
 
-	if ((value < 0) || (value > 255))
+	if (value > 255)
 	{
 		error("Mapper value out of range!");
 
@@ -263,7 +265,7 @@ nes_inesmir(int *ip)
 	if (!evaluate(ip, ';'))
 		return;
 
-	if ((value < 0) || (value > 15))
+	if (value > 15)
 	{
 		error("Mirror value out of range!");
 

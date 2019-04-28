@@ -450,7 +450,7 @@ decode_256(FILE *f, int w, int h)
 		/* simple run-length encoding */
 		do {
 			c = fgetc(f);
-			if (c == EOF)
+			if (c == (unsigned int)EOF)
 				break;
 			if ((c & 0xC0) != 0xC0)
 				i = 1;
@@ -461,12 +461,12 @@ decode_256(FILE *f, int w, int h)
 			do {
 				x++;
 			   *ptr++ = c;
-				if (x == w) {
+				if (x == (unsigned int)w) {
 					x = 0;
 					y++;
 				}
 			} while (--i);
-		} while (y < h);
+		} while (y < (unsigned int)h);
 		break;
 
 	default:
@@ -475,9 +475,9 @@ decode_256(FILE *f, int w, int h)
 	}
 
 	/* get the palette */
-	if (c != EOF)
+	if (c != (unsigned int)EOF)
 		c = fgetc(f);
-	while ((c != 12) && (c != EOF))
+	while ((c != 12) && (c != (unsigned int)EOF))
 		c = fgetc(f);
 	if (c == 12)
 		if (fread(pcx_pal, 768, 1, f) != 0)
@@ -518,7 +518,7 @@ decode_16(FILE *f, int w, int h)
 		do {
 			/* get a char */
 			c = fgetc(f);
-			if (c == EOF)
+			if (c == (unsigned int)EOF)
 				break;
 
 			/* check if it's a repeat command */
