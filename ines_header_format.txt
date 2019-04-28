@@ -1,3 +1,4 @@
+
 [iNES Header/Format Information File]
 [Version 2.0 Compiled on 1/31/98]
 [VmprHntrD - kennedy5@flash.net]
