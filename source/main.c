@@ -47,13 +47,8 @@ FILE *in_fp;	/* file pointers, input */
 FILE *lst_fp;	/* listing */
 char  section_name[4][8] = { "  ZP", " BSS", "CODE", "DATA" };
 int   dump_seg;
-int   develo_opt;
 int   header_opt;
-int   srec_opt;
 int   run_opt;
-int   scd_opt;
-int   cd_opt;
-int   mx_opt;
 int   mlist_opt;	/* macro listing main flag */
 int   xlist;		/* listing file main flag */
 int   list_level;	/* output level */
@@ -89,22 +84,13 @@ main(int argc, char **argv)
 	if ((p = strrchr(prg_name, '.')) != NULL)
 		*p = '\0';
 
-	/* machine detection */
-	if (!strncasecmp(prg_name, "PCE", 3))
-		machine = &pce;
-	else
-		machine = &nes;
+	machine = &nes;
 
 	/* init assembler options */
 	list_level = 2;
 	header_opt = 1;
-	develo_opt = 0;
 	mlist_opt = 0;
-	srec_opt = 0;
 	run_opt = 0;
-	scd_opt = 0;
-	cd_opt = 0;
-	mx_opt = 0;
 	file = 0;
 
 	/* display assembler version message */
@@ -128,10 +114,6 @@ main(int argc, char **argv)
 				else if (!strcmp(argv[i], "-raw"))
 					header_opt = 0;
 
-				/* output s-record file */
-				else if (!strcmp(argv[i], "-srec"))
-					srec_opt = 1;
-
 				/* output level */
 				else if (!strncmp(argv[i], "-l", 2)) {
 					/* get level */
@@ -151,32 +133,6 @@ main(int argc, char **argv)
 					return (0);
 				}
 
-				else {
-					/* PCE specific functions */
-					if (machine->type == MACHINE_PCE) {
-						/* cd-rom */
-						if (!strcmp(argv[i], "-cd")) {
-							cd_opt  = STANDARD_CD;
-							scd_opt = 0;
-						}
-
-						/* super cd-rom */
-						else if (!strcmp(argv[i], "-scd")) {
-							scd_opt = SUPER_CD;
-							cd_opt  = 0;
-						}
-
-						/* develo auto-run */
-						else if (!strcmp(argv[i], "-develo"))
-							develo_opt = 1;
-						else if (!strcmp(argv[i], "-dev"))
-							develo_opt = 1;
-
-						/* output mx file */
-						else if (!strcmp(argv[i], "-mx"))
-							mx_opt = 1;
-				 	}
-				}
 			}
 			else {
 				strcpy(in_fname, argv[i]);
@@ -202,7 +158,7 @@ main(int argc, char **argv)
 	strcpy(bin_fname, in_fname);
 	strcpy(lst_fname, in_fname);
 	strcpy(fns_fname, in_fname);
-	strcat(bin_fname, (cd_opt || scd_opt) ? ".bin" : machine->rom_ext);
+	strcat(bin_fname, machine->rom_ext);
 	strcat(lst_fname, ".lst");
 	strcat(fns_fname, ".fns");
 
@@ -246,8 +202,6 @@ main(int argc, char **argv)
 
 	/* predefined symbols */
 	lablset("MAGICKIT", 1);
-	lablset("DEVELO", develo_opt | mx_opt);
-	lablset("CDROM", cd_opt | scd_opt);
 	lablset("_bss_end", 0);
 	lablset("_bank_base", 0);
 	lablset("_nb_bank", 1);
@@ -261,19 +215,6 @@ main(int argc, char **argv)
 	bank_limit = 0x7F;
 	bank_base = 0;
 	errcnt = 0;
-
-	if (cd_opt) {
-		rom_limit  = 0x10000;	/* 64KB */
-		bank_limit = 0x07;
-	}
-	else if (scd_opt) {
-		rom_limit  = 0x40000;	/* 256KB */
-		bank_limit = 0x1F;
-	}
-	else if (develo_opt || mx_opt) {
-		rom_limit  = 0x30000;	/* 192KB */
-		bank_limit = 0x17;
-	}
 
 	/* assemble */
 	for (pass = FIRST_PASS; pass <= LAST_PASS; pass++) {
@@ -371,12 +312,6 @@ main(int argc, char **argv)
 			lablset("_nb_bank", max_bank + 1);
 		}
 
-		/* adjust the symbol table for the develo or for cd-roms */
-		if (pass == FIRST_PASS) {
-			if (develo_opt || mx_opt || cd_opt || scd_opt)
-				lablremap();
-		}
-
 		/* rewind input file */
 		rewind(in_fp);
 
@@ -394,97 +329,21 @@ main(int argc, char **argv)
 
 	/* rom */
 	if (errcnt == 0) {
-		/* cd-rom */
-		if (cd_opt || scd_opt) {
-			/* open output file */
-			if ((fp = fopen(bin_fname, "wb")) == NULL) {
-				printf("Can not open output file '%s'!\n", bin_fname);
-				exit(1);
-			}
+		/* save binary file */
 
-			/* boot code */
-			if (header_opt) {
-				/* open ipl binary file */
-				if ((ipl = open_file("boot.bin", "rb")) == NULL) {
-					printf("Can not find CD boot file 'boot.bin'!\n");
-					exit(1);
-				}
-
-				/* load ipl */
-				fread(ipl_buffer, 1, 4096, ipl);
-				fclose(ipl);
-
-				memset(&ipl_buffer[0x800], 0, 32);
-				/* prg sector base */
-				ipl_buffer[0x802] = 2;
-				/* nb sectors */
-				ipl_buffer[0x803] = 4;
-				/* loading address */
-				ipl_buffer[0x804] = 0x00;
-				ipl_buffer[0x805] = 0x40;
-				/* starting address */
-				ipl_buffer[0x806] = 0x10;
-				ipl_buffer[0x807] = 0x40;
-				/* mpr registers */
-				ipl_buffer[0x808] = 0x00;
-				ipl_buffer[0x809] = 0x01;
-				ipl_buffer[0x80A] = 0x02;
-				ipl_buffer[0x80B] = 0x03;
-				ipl_buffer[0x80C] = 0x04;
-				/* load mode */
-				ipl_buffer[0x80D] = 0x60;
-
-				/* write boot code */
-				fwrite(ipl_buffer, 1, 4096, fp);
-			}
-
-			/* write rom */
-			fwrite(rom, 8192, (max_bank + 1), fp);
-			fclose(fp);
+		/* open file */
+		if ((fp = fopen(bin_fname, "wb")) == NULL) {
+			printf("Can not open binary file '%s'!\n", bin_fname);
+			exit(1);
 		}
 
-		/* develo box */
-		else if (develo_opt || mx_opt) {
-			page = (map[0][0] >> 5);
+		/* write header */
+		if (header_opt)
+			machine->write_header(fp, max_bank + 1);
 
-			/* save mx file */
-			if ((page + max_bank) < 7)
-				/* old format */
-				write_srec(out_fname, "mx", page << 13);
-			else
-				/* new format */
-				write_srec(out_fname, "mx", 0xD0000);
-
-			/* execute */
-			if (develo_opt) {
-				sprintf(cmd, "perun %s", out_fname);
-				system(cmd);
-			}
-		}
-
-		/* save */
-		else {
-			/* s-record file */
-			if (srec_opt)
-				write_srec(out_fname, "s28", 0);
-
-			/* binary file */
-			else {
-				/* open file */
-				if ((fp = fopen(bin_fname, "wb")) == NULL) {
-					printf("Can not open binary file '%s'!\n", bin_fname);
-					exit(1);
-				}
-
-				/* write header */
-				if (header_opt)
-					machine->write_header(fp, max_bank + 1);
-
-				/* write rom */
-				fwrite(rom, 8192, (max_bank + 1), fp);
-				fclose(fp);
-			}
-		}
+		/* write rom */
+		fwrite(rom, 8192, (max_bank + 1), fp);
+		fclose(fp);
 	}
 
 	/* close listing file */
@@ -517,26 +376,8 @@ calc_bank_base(void)
 {
 	int base;
 
-	/* cd */
-	if (cd_opt)
-		base = 0x80;
-
-	/* super cd */
-	else if (scd_opt)
-		base = 0x68;
-
-	/* develo */
-	else if (develo_opt || mx_opt) {
-		if (max_bank < 4)
-			base = 0x84;
-		else
-			base = 0x68;
-	}
-
 	/* default */
-	else {
-		base = 0;
-	}
+	base = 0;
 
 	return (base);
 }
@@ -561,13 +402,6 @@ help(void)
 	printf("-l #   : listing file output level (0-3)\n");
 	printf("-m     : force macro expansion in listing\n");
 	printf("-raw   : prevent adding a ROM header\n");
-	if (machine->type == MACHINE_PCE) {
-		printf("-cd    : create a CD-ROM binary image\n");
-		printf("-scd   : create a Super CD-ROM binary image\n");
-		printf("-dev   : assemble and run on the Develo Box\n");
-		printf("-mx    : create a Develo MX file\n");
-	}
-	printf("-srec  : create a Motorola S-record file\n");
 	printf("infile : file to be assembled\n");
 }
 
