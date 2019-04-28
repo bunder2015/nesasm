@@ -1,11 +1,11 @@
 RM       = rm -f
 CC       = gcc
 
-CFLAGS   = -O4 -Wall
+CFLAGS   = -O2 -Wall
 
-OBJS     = main.o input.o assemble.o expr.o code.o command.o\
-         macro.o func.o proc.o symbol.o pcx.o output.o crc.o\
-         pce.o map.o mml.o nes.o
+OBJS     = main.o input.o assemble.o expr.o code.o command.o \
+         macro.o func.o proc.o symbol.o pcx.o output.o crc.o \
+         nes.o
 
 EXEDIR   = ..
 
@@ -30,7 +30,6 @@ clean:
 $(OBJS)  : defs.h externs.h protos.h
 main.o   : inst.h vars.h
 expr.o   : expr.h
-pce.o    : pce.h
 nes.o    : nes.h
 %.o : %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
