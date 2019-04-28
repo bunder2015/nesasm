@@ -604,8 +604,9 @@ do_incbin(int *ip)
 
 	/* load data on last pass */
 	if (pass == LAST_PASS) {
-		fread(&rom[bank][loccnt], 1, size, fp);
-		memset(&map[bank][loccnt], section + (page << 5), size);
+		if (fread(&rom[bank][loccnt], 1, size, fp) != 0) {
+			memset(&map[bank][loccnt], section + (page << 5), size);
+		}
 
 		/* output line */
 		println();

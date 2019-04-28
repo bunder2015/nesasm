@@ -350,7 +350,7 @@ cont:
 	}
 
 	/* convert back the pointer to an array index */
-   *ip = (int)expr - (int)prlnbuf;
+	*ip = (unsigned char *)expr - (unsigned char *)prlnbuf;
 
 	/* ok */
 	return (1);
@@ -634,7 +634,7 @@ push_op(int op)
 int
 do_op(void)
 {
-	int val[2];
+	int val[2] = {0,0};
 	int op;
 
 	/* operator */

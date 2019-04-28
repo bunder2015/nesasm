@@ -380,9 +380,10 @@ pcx_load(char *name)
 	}
 
 	/* get the picture size */
-	fread(&pcx, 128, 1, f);
-	pcx_w = (GET_SHORT(pcx.xmax) - GET_SHORT(pcx.xmin) + 1);
-	pcx_h = (GET_SHORT(pcx.ymax) - GET_SHORT(pcx.ymin) + 1);
+	if (fread(&pcx, 128, 1, f) != 0) {
+		pcx_w = (GET_SHORT(pcx.xmax) - GET_SHORT(pcx.xmin) + 1);
+		pcx_h = (GET_SHORT(pcx.ymax) - GET_SHORT(pcx.ymin) + 1);
+	}
 
 	/* adjust picture width */
 	if (pcx_w & 0x01)
@@ -399,7 +400,7 @@ pcx_load(char *name)
 	}
 
 	/* malloc a buffer */
-    pcx_buf = malloc(pcx_w * pcx_h);
+	pcx_buf = malloc(pcx_w * pcx_h);
 	if (pcx_buf == NULL) {
 		error("Can not load file, not enough memory!");
 		return (0);
@@ -441,10 +442,10 @@ decode_256(FILE *f, int w, int h)
 	switch (pcx.encoding) {
 	case 0:
 		/* raw */
-		fread(pcx_buf, w, h, f);
-		c = fgetc(f);
-		return;
-
+		if (fread(pcx_buf, w, h, f) != 0) {
+			c = fgetc(f);
+			return;
+		}
 	case 1:
 		/* simple run-length encoding */
 		do {
@@ -479,7 +480,7 @@ decode_256(FILE *f, int w, int h)
 	while ((c != 12) && (c != EOF))
 		c = fgetc(f);
 	if (c == 12)
-		fread(pcx_pal, 768, 1, f);
+		if (fread(pcx_pal, 768, 1, f) != 0)
 
 	/* number of colors */
 	pcx_nb_colors = 256;
