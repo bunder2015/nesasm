@@ -67,7 +67,7 @@ do_macro(int *ip)
 		/* install this new macro in the hash table */
 		if (!macro_install())
 			return;
-	} 
+	}
 	in_macro = 1;
 }
 
@@ -117,7 +117,7 @@ struct t_macro *macro_look(int *ip)
 	ptr = macro_tbl[hash];
 	while (ptr) {
 		if (!strcmp(name, ptr->name))
-			break;			
+			break;
 		ptr = ptr->next;
 	}
 
@@ -168,7 +168,7 @@ macro_getargs(int ip)
 			}
 			break;
 
-		/* string */			
+		/* string */
 		case '{':
 			c = '}';
 		case '\"':
@@ -212,7 +212,7 @@ macro_getargs(int ip)
 			ptr[i] = '\0';
 			break;
 
-		/* end of line */	
+		/* end of line */
 		case ';':
 		case '\0':
 			return (1);
@@ -235,7 +235,7 @@ macro_getargs(int ip)
 				/* read a new line */
 				if (readline() == -1)
 					return (0);
-				
+
 				/* rewind line pointer and continue */
 				ip = SFIELD;
 				break;
@@ -297,13 +297,13 @@ macro_getargs(int ip)
 					{
 						arg--;
 						ptr = marg[midx][arg];
-	
+
 						/* check string length */
 						if (strlen(ptr) > 75) {
 							error("Macro argument string too long, max. 80 characters!");
 							return (0);
 						}
-	
+
 						/* attach current arg to the previous one */
 						strcat(ptr, ",");
 						strcat(ptr, marg[midx][arg + 1]);

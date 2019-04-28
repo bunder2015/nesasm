@@ -112,22 +112,22 @@ mml_parse(unsigned char *buffer, int bufsize, char *ptr)
 		/* octave */
 		case 'O':
 			snd_octave = mml_get_value(&ptr);
-	
+
 			if ((snd_octave < 1) || (snd_octave > 7)) {
 				error("Incorrect octave!");
 				return (-1);
 			}
 			break;
-	
+
 		/* volume */
 		case 'V':
 			snd_volume = mml_get_value(&ptr);
-	
+
 			if (snd_volume > 15) {
 				error("Incorrect volume!");
 				return (-1);
 			}
-	
+
 			/* gen code */
 			*buffer++ = SND_VOLUME;
 			*buffer++ = (snd_volume << 4) + snd_volume;
@@ -137,23 +137,23 @@ mml_parse(unsigned char *buffer, int bufsize, char *ptr)
 		/* tempo */
 		case 'T':
 			snd_tempo = mml_get_value(&ptr);
-	
+
 			if ((snd_tempo < 32) || (snd_tempo > 256)) {
 				error("Incorrect tempo!");
 				return (-1);
 			}
 			break;
-	
+
 		/* length */
 		case 'L':
 			snd_length = mml_get_length(&ptr);
-	
+
 			if (!snd_length) {
 				error("Incorrect note length!");
 				return (-1);
 			}
 			break;
-	
+
 		/* notes */
 		case 'A':
 		case 'B':
@@ -219,7 +219,7 @@ mml_parse(unsigned char *buffer, int bufsize, char *ptr)
 			*buffer++ = mml_calc_duration(len);
 			size += 5;
 			break;
-	
+
 		/* rest */
 		case 'R':
 			/* local length */
@@ -251,13 +251,13 @@ mml_parse(unsigned char *buffer, int bufsize, char *ptr)
 		case 'W':
 			snd_wave = mml_get_value(&ptr);
 			snd_wave_flag = 1;
-	
+
 			if ((snd_wave < 1) || (snd_wave > 3)) {
 				error("Incorrect waveform!");
 				return (-1);
 			}
 			break;
-	
+
 		/* other */
 		default:
 			error("Syntax error!");

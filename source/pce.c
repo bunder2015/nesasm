@@ -66,7 +66,7 @@ pce_pack_8x8_tile(unsigned char *buffer, void *data, int line_offset, int format
 				buffer[cnt+1]  |= (pixel & 0x02) ? mask : 0;
 				buffer[cnt+16] |= (pixel & 0x04) ? mask : 0;
 				buffer[cnt+17] |= (pixel & 0x08) ? mask : 0;
-			}				
+			}
 			ptr += line_offset;
 			cnt += 2;
 		}
@@ -76,10 +76,10 @@ pce_pack_8x8_tile(unsigned char *buffer, void *data, int line_offset, int format
 		/* 4-bit packed format - from an array */
 		cnt = 0;
 		packed = (unsigned int *)data;
-	
+
 		for (i = 0; i < 8; i++) {
 			pixel = packed[i];
-	
+
 			for (j = 0; j < 8; j++) {
 				mask = 1 << j;
 				buffer[cnt]    |= (pixel & 0x01) ? mask : 0;
@@ -145,7 +145,7 @@ pce_pack_16x16_tile(unsigned char *buffer, void *data, int line_offset, int form
 				buffer[cnt+33] |= (pixel & 0x02) ? mask : 0;
 				buffer[cnt+48] |= (pixel & 0x04) ? mask : 0;
 				buffer[cnt+49] |= (pixel & 0x08) ? mask : 0;
-			}				
+			}
 			if (i == 7)
 				cnt += 48;
 			ptr += line_offset;
@@ -212,7 +212,7 @@ pce_pack_16x16_sprite(unsigned char *buffer, void *data, int line_offset, int fo
 				buffer[cnt+33] |= (pixel & 0x02) ? mask : 0;
 				buffer[cnt+65] |= (pixel & 0x04) ? mask : 0;
 				buffer[cnt+97] |= (pixel & 0x08) ? mask : 0;
-			}				
+			}
 			ptr += line_offset;
 			cnt += 2;
 		}
@@ -222,11 +222,11 @@ pce_pack_16x16_sprite(unsigned char *buffer, void *data, int line_offset, int fo
 		/* 4-bit packed format - from array */
 		cnt = 0;
 		packed = (unsigned int *)data;
-	
+
 		for (i = 0; i < 16; i++) {
 			/* left column */
 			pixel = packed[cnt];
-	
+
 			for (j = 0; j < 8; j++) {
 				mask = 1 << j;
 				buffer[cnt+1]  |= (pixel & 0x01) ? mask : 0;
@@ -238,7 +238,7 @@ pce_pack_16x16_sprite(unsigned char *buffer, void *data, int line_offset, int fo
 
 			/* right column */
 			pixel = packed[cnt + 1];
-	
+
 			for (j = 0; j < 8; j++) {
 				mask = 1 << j;
 				buffer[cnt]    |= (pixel & 0x01) ? mask : 0;
@@ -363,7 +363,7 @@ pce_defchr(int *ip)
 			return;
 		}
 		lablptr->vram = value;
-	
+
 		/* get the default palette */
 		if (!evaluate(ip, ','))
 			return;
@@ -477,7 +477,7 @@ pce_defspr(int *ip)
 	if (lablptr) {
 		/* define label */
 		labldef(loccnt, 1);
-	
+
 		/* get the VRAM address */
 		if (!evaluate(ip, ','))
 			return;
@@ -486,7 +486,7 @@ pce_defspr(int *ip)
 			return;
 		}
 		lablptr->vram = value;
-	
+
 		/* get the default palette */
 		if (!evaluate(ip, ','))
 			return;
@@ -562,7 +562,7 @@ pce_incbat(int *ip)
 					for (l = 0; l < 8; l++) {
 						if ((ptr[l] & 0xF0) != ref)
 							flag = 1;
-					}				
+					}
 					ptr += pcx_w;
 				}
 				temp = (base & 0xFFF) | ((ref & 0xF0) << 8);
@@ -899,7 +899,7 @@ pce_mml(int *ip)
 				/* read a new line */
 				if (readline() == -1)
 					return;
-				
+
 				/* rewind line pointer and continue */
 				*ip = SFIELD;
 			}
@@ -908,7 +908,7 @@ pce_mml(int *ip)
 				return;
 			}
 		}
-	}			
+	}
 
 	/* stop */
 	offset += mml_stop(buffer + offset);

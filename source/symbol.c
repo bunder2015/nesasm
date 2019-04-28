@@ -81,7 +81,7 @@ colsym(int *ip)
 //		symbol[0] = 0;
 //		symbol[1] = '\0';
 		return (0);
-	}	
+	}
 
 	/* ok */
 	return (i);
@@ -110,7 +110,7 @@ struct t_symbol *stlook(int flag)
 
 			while (sym) {
 				if (!strcmp(symbol, sym->name))
-					break;			
+					break;
 				sym = sym->next;
 			}
 
@@ -135,7 +135,7 @@ struct t_symbol *stlook(int flag)
 		sym  = hash_tbl[hash];
 		while (sym) {
 			if (!strcmp(symbol, sym->name))
-				break;			
+				break;
 			sym = sym->next;
 		}
 
@@ -225,7 +225,7 @@ labldef(int lval, int flag)
 	if (lablptr == NULL)
 		return (0);
 
-	/* adjust symbol address */	
+	/* adjust symbol address */
 	if (flag)
 		lval = (lval & 0x1FFF) | (page << 13);
 

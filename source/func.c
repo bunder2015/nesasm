@@ -48,7 +48,7 @@ do_func(int *ip)
 		/* install this new function in the hash table */
 		if (!func_install(*ip))
 			return;
-	} 
+	}
 }
 
 /* search a function */
@@ -63,7 +63,7 @@ func_look(void)
 	func_ptr = func_tbl[hash];
 	while (func_ptr) {
 		if (!strcmp(&symbol[1], func_ptr->name))
-			break;			
+			break;
 		func_ptr = func_ptr->next;
 	}
 
@@ -135,7 +135,7 @@ func_extract(int ip)
 	while (!end) {
 		c = prlnbuf[ip++];
 		switch (c) {
-		/* end of line */	
+		/* end of line */
 		case ';':
 		case '\0':
 		   *ptr++ = '\0';
@@ -220,7 +220,7 @@ func_getargs(void)
 			}
 			break;
 
-		/* end of line */	
+		/* end of line */
 		case ';':
 		case '\0':
 			error("Syntax error in function call!");

@@ -83,7 +83,7 @@ main(int argc, char **argv)
 			 prg_name = argv[0];
 		else
 			 prg_name++;
-	}	
+	}
 
 	/* remove extension */
 	if ((p = strrchr(prg_name, '.')) != NULL)
@@ -171,7 +171,7 @@ main(int argc, char **argv)
 							develo_opt = 1;
 						else if (!strcmp(argv[i], "-dev"))
 							develo_opt = 1;
-		
+
 						/* output mx file */
 						else if (!strcmp(argv[i], "-mx"))
 							mx_opt = 1;
@@ -205,7 +205,7 @@ main(int argc, char **argv)
 	strcat(bin_fname, (cd_opt || scd_opt) ? ".bin" : machine->rom_ext);
 	strcat(lst_fname, ".lst");
 	strcat(fns_fname, ".fns");
-        
+
 
 	if (p)
 	   *p = '.';
@@ -401,7 +401,7 @@ main(int argc, char **argv)
 				printf("Can not open output file '%s'!\n", bin_fname);
 				exit(1);
 			}
-		
+
 			/* boot code */
 			if (header_opt) {
 				/* open ipl binary file */
@@ -437,7 +437,7 @@ main(int argc, char **argv)
 				/* write boot code */
 				fwrite(ipl_buffer, 1, 4096, fp);
 			}
-		
+
 			/* write rom */
 			fwrite(rom, 8192, (max_bank + 1), fp);
 			fclose(fp);
@@ -475,11 +475,11 @@ main(int argc, char **argv)
 					printf("Can not open binary file '%s'!\n", bin_fname);
 					exit(1);
 				}
-		
+
 				/* write header */
 				if (header_opt)
 					machine->write_header(fp, max_bank + 1);
-		
+
 				/* write rom */
 				fwrite(rom, 8192, (max_bank + 1), fp);
 				fclose(fp);
@@ -520,7 +520,7 @@ calc_bank_base(void)
 	/* cd */
 	if (cd_opt)
 		base = 0x80;
-	
+
 	/* super cd */
 	else if (scd_opt)
 		base = 0x68;
@@ -626,7 +626,7 @@ show_seg_usage(void)
 				nb++;
 
 		/* display bank infos */
-		if (nb)			
+		if (nb)
 			printf("BANK% 4i    %20s    %4i/%4i\n",
 					i, bank_name[i], nb, 8192 - nb);
 		else {

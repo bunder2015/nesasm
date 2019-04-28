@@ -288,7 +288,7 @@ proc_reloc(void)
 		/* proc */
 		if (proc_ptr->group == NULL) {
 			tmp = addr + proc_ptr->size;
-	
+
 			/* bank change */
 			if (tmp > 0x2000) {
 				bank++;
@@ -334,16 +334,16 @@ proc_reloc(void)
 				/* local symbols */
 				if (sym->local) {
 					local = sym->local;
-	
+
 					while (local) {
 						proc_ptr = local->proc;
-			
+
 						/* remap addr */
 						if (local->proc) {
 							local->bank   =  proc_ptr->bank;
 							local->value += (proc_ptr->org - proc_ptr->base);
 						}
-		
+
 						/* next */
 						local = local->next;
 					}
@@ -381,7 +381,7 @@ proc_look(void)
 	ptr = proc_tbl[hash];
 	while (ptr) {
 		if (!strcmp(&symbol[1], ptr->name))
-			break;			
+			break;
 		ptr = ptr->next;
 	}
 

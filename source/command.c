@@ -495,7 +495,7 @@ do_bank(int *ip)
 	case ';':
 	case '\0':
 		break;
-		
+
 	case ',':
 		/* get name */
 		(*ip)++;
@@ -510,7 +510,7 @@ do_bank(int *ip)
 			}
 		}
 
-		/* copy name */			
+		/* copy name */
 		strcpy(bank_name[value], name);
 
 		/* check end of line */
@@ -903,7 +903,7 @@ do_ds(int *ip)
 	case S_ZP:
 		/* zero page section */
 		limit = machine->zp_limit;
-		break;	
+		break;
 
 	case S_BSS:
 		/* ram section */
@@ -1103,7 +1103,7 @@ do_opt(int *ip)
 		if (c == ',')
 			continue;
 
-		/* end of line */	
+		/* end of line */
 		if (c == ';' || c == '\0')
 			break;
 
@@ -1167,7 +1167,7 @@ htoi(char *str, int nb)
 	int i;
 
 	val = 0;
-	
+
 	for (i = 0; i < nb; i++) {
 		 c = toupper(str[i]);
 

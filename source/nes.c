@@ -77,7 +77,7 @@ nes_pack_8x8_tile(unsigned char *buffer, void *data, int line_offset, int format
 				pixel = ptr[j ^ 0x07];
 				buffer[cnt]   |= (pixel & 0x01) ? (1 << j) : 0;
 				buffer[cnt+8] |= (pixel & 0x02) ? (1 << j) : 0;
-			}				
+			}
 			ptr += line_offset;
 			cnt += 1;
 		}
@@ -88,10 +88,10 @@ nes_pack_8x8_tile(unsigned char *buffer, void *data, int line_offset, int format
 		cnt = 0;
 		err = 0;
 		packed = data;
-	
+
 		for (i = 0; i < 8; i++) {
 			pixel = packed[i];
-	
+
 			for (j = 0; j < 8; j++) {
 				/* check for errors */
 				if (pixel & 0x0C)
@@ -177,16 +177,16 @@ nes_inesprg(int *ip)
 	if (!evaluate(ip, ';'))
 		return;
 
-	if ((value < 0) || (value > 64)) 
+	if ((value < 0) || (value > 64))
 	{
 		error("PRG bank value out of range!");
-	
+
 		return;
 	}
-	
+
 	ines_prg = value;
 
-	if (pass == LAST_PASS) 
+	if (pass == LAST_PASS)
 	{
 		println();
 	}
@@ -205,16 +205,16 @@ nes_ineschr(int *ip)
 	if (!evaluate(ip, ';'))
 		return;
 
-	if ((value < 0) || (value > 64)) 
+	if ((value < 0) || (value > 64))
 	{
 		error("CHR bank value out of range!");
-	
+
 		return;
 	}
-	
+
 	ines_chr = value;
 
-	if (pass == LAST_PASS) 
+	if (pass == LAST_PASS)
 	{
 		println();
 	}
@@ -233,18 +233,18 @@ nes_inesmap(int *ip)
 	if (!evaluate(ip, ';'))
 		return;
 
-	if ((value < 0) || (value > 255)) 
+	if ((value < 0) || (value > 255))
 	{
 		error("Mapper value out of range!");
-	
+
 		return;
 	}
-	
+
 	ines_mapper[0] &= 0x0F;
 	ines_mapper[0] |= (value & 0x0F) << 4;
 	ines_mapper[1]  = (value & 0xF0);
 
-	if (pass == LAST_PASS) 
+	if (pass == LAST_PASS)
 	{
 		println();
 	}
@@ -263,17 +263,17 @@ nes_inesmir(int *ip)
 	if (!evaluate(ip, ';'))
 		return;
 
-	if ((value < 0) || (value > 15)) 
+	if ((value < 0) || (value > 15))
 	{
 		error("Mirror value out of range!");
-	
+
 		return;
 	}
-	
+
 	ines_mapper[0] &= 0xF0;
 	ines_mapper[0] |= (value  & 0x0F);
 
-	if (pass == LAST_PASS) 
+	if (pass == LAST_PASS)
 	{
 		println();
 	}

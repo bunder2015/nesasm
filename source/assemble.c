@@ -63,7 +63,7 @@ assemble(void)
 		if (pass == FIRST_PASS) {
 			ptr = (void *)malloc(sizeof(struct t_line));
 			buf = (void *)malloc(strlen(&prlnbuf[SFIELD]) + 1);
-			if ((ptr == NULL) || (buf == NULL)) {		
+			if ((ptr == NULL) || (buf == NULL)) {
 				error("Out of memory!");
 				return;
 			}
@@ -323,7 +323,7 @@ oplook(int *idx)
 				if (!(opflg & (IMM|ZP|ZP_X|ZP_IND_Y|ABS|ABS_X|ABS_Y)))
 					return (-1);
 			}
-			return (i);			
+			return (i);
 		}
 		ptr = ptr->next;
 	}
@@ -366,7 +366,7 @@ addinst(struct t_opcode *optbl)
 		}
 
 		hash &= 0xFF;
-		
+
 		/* insert the instruction in the hash table */
 		optbl->next = inst_tbl[hash];
 		inst_tbl[hash] = optbl;

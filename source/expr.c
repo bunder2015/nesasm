@@ -84,7 +84,7 @@ cont:
 				goto error;
 			if (!push_val(T_DECIMAL))
 				return (0);
-		} 
+		}
 
 		/* symbol */
 		else
@@ -93,7 +93,7 @@ cont:
 				goto error;
 			if (!push_val(T_SYMBOL))
 				return (0);
-		} 
+		}
 
 		/* operators */
 		else {
@@ -339,14 +339,14 @@ cont:
 		if (end != 1)
 			goto error;
 		expr++;
-		break;		
+		break;
 	case ',':
 		if (end != 2) {
 			error("Argument missing!");
 			return (0);
 		}
 		expr++;
-		break;		
+		break;
 	}
 
 	/* convert back the pointer to an array index */
@@ -466,7 +466,7 @@ push_val(int type)
 		for (;;) {
 			expr++;
 			c = *expr;
-			
+
 			if (isdigit(c))
 				c -= '0';
 			else if (isalpha(c)) {
@@ -547,7 +547,7 @@ getsym(void)
 		}
 	}
 
-	/* store symbol length */	
+	/* store symbol length */
 	symbol[0] = i;
 	symbol[i+1] = '\0';
 	return (i);
@@ -728,7 +728,7 @@ do_op(void)
 	/* HIGH */
 	case OP_HIGH:
 		val[0] = (val[0] & 0xFF00) >> 8;
-		break;		
+		break;
 
 	/* LOW */
 	case OP_LOW:

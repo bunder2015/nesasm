@@ -121,7 +121,7 @@ struct t_opcode pce_pseudo[23] = {
 	{NULL,  "MML",    pce_mml,    PSEUDO, P_MML,    0},
 	{NULL,  "PAL",    pce_pal,    PSEUDO, P_PAL,    0},
 	{NULL,  "VRAM",   pce_vram,   PSEUDO, P_VRAM,   0},
-					             
+
 	{NULL, ".DEFCHR", pce_defchr, PSEUDO, P_DEFCHR, 0},
 	{NULL, ".DEFPAL", pce_defpal, PSEUDO, P_DEFPAL, 0},
 	{NULL, ".DEFSPR", pce_defspr, PSEUDO, P_DEFSPR, 0},

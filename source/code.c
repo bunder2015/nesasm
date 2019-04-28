@@ -368,7 +368,7 @@ class7(int *ip)
 			putword(loccnt+2, addr);
 	}
 
-	/* update location counter */ 
+	/* update location counter */
 	if (mode & (ZP | ZP_X))
 		loccnt += 3;
 	else
@@ -770,7 +770,7 @@ getoperand(int *ip, int flag, int last_char)
 			return (0);
 		}
 		(*ip)++;
-		break;		
+		break;
 
 	case ',':
 		/* need more operands */
@@ -779,7 +779,7 @@ getoperand(int *ip, int flag, int last_char)
 			return (0);
 		}
 		(*ip)++;
-		break;		
+		break;
 	}
 
 	/* ok */

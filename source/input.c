@@ -233,7 +233,7 @@ open_input(char *name)
 	if (infile_num) {
 		input_file[infile_num].lnum = slnum;
 		input_file[infile_num].fp = in_fp;
-	}				
+	}
 
 	/* get a copy of the file name */
 	strcpy(temp, name);
@@ -255,7 +255,7 @@ open_input(char *name)
 				return (1);
 			}
 		}
-	}				
+	}
 
 	/* open the file */
 	if ((fp = open_file(temp, "r")) == NULL)
@@ -333,7 +333,7 @@ open_file(char *name, char *mode)
 		if (strlen(incpath[i])) {
 			strcpy(testname, incpath[i]);
 			strcat(testname, name);
-	
+
 			fileptr = fopen(testname, mode);
 			if (fileptr != NULL) break;
 		}

@@ -273,7 +273,7 @@ pcx_get_args(int *ip)
 		/* check number of args */
 		if (pcx_nb_args == 7)
 			break;
-	}			
+	}
 
 	/* check number of args */
 	if (optype & (1 << pcx_nb_args)) {
@@ -471,7 +471,7 @@ decode_256(FILE *f, int w, int h)
 	default:
 		error("Unsupported PCX encoding scheme!");
 		return;
-	}			
+	}
 
 	/* get the palette */
 	if (c != EOF)
@@ -581,7 +581,7 @@ decode_16(FILE *f, int w, int h)
 	default:
 		error("Unsupported PCX encoding scheme!");
 		return;
-	}			
+	}
 
 	/* get the palette */
 	memset(pcx_pal, 0, 768);
