@@ -23,6 +23,7 @@ The original license is as follows: (Can also be found in main.c)
 	* @camsaul - Linux Makefile ([b151f0c](https://github.com/camsaul/nesasm/commit/b151f0c7cbfaa63690c8a72fdf59c75551878be6))
 	* @kevinselwyn - Bug fixes ([5304ab5](https://github.com/kevinselwyn/nesasm/commit/5304ab54b211720f88872911a01827d8bbdef3d5))
 	* @munshkr - Removal of unnecessary PC-Engine code ([ecc637d](https://github.com/munshkr/nesasm/commit/ecc637dc139b61cfd62d61cbb1aef0207d22f8db)) ([cc5c6a2](https://github.com/munshkr/nesasm/commit/cc5c6a25d0002ff51ea1d133633c4bf8325dcae4))
+	* @zorchenhimer - Bug fixes ([ada3927](https://github.com/zorchenhimer/nesasm/commit/ada392793175ab625d7641f1bcfefa68c47d246f))
 
 Please see [`changelog.txt`](https://raw.githubusercontent.com/bunder2015/nesasm/master/changelog.txt) for changelog data prior to github.
 
