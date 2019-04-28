@@ -254,8 +254,8 @@ main(int argc, char **argv)
 	lablset("_call_bank", 0);
 
 	/* init global variables */
-	max_zp = 0x01;
-	max_bss = 0x0201;
+	max_zp = 0x00;
+	max_bss = 0x0200;
 	max_bank = 0;
 	rom_limit = 0x100000;		/* 1MB */
 	bank_limit = 0x7F;
@@ -590,7 +590,7 @@ show_seg_usage(void)
 	printf("\n");
 
 	/* zp usage */
-	if (max_zp <= 1)
+	if (max_zp < 1)
 		printf("      ZP    -\n");
 	else {
 		start = ram_base;
@@ -599,7 +599,7 @@ show_seg_usage(void)
 	}
 
 	/* bss usage */
-	if (max_bss <= 0x201)
+	if (max_bss < 0x201)
 		printf("     BSS    -\n");
 	else {
 		start = ram_base + 0x200;
