@@ -446,6 +446,7 @@ decode_256(FILE *f, int w, int h)
 			c = fgetc(f);
 			return;
 		}
+		/* fall through */
 	case 1:
 		/* simple run-length encoding */
 		do {
@@ -554,10 +555,13 @@ decode_16(FILE *f, int w, int h)
 								switch (pcx.np) {
 								case 4:
 									pix |= ((pcx_plane[j][3] >> k) & 0x01) << 3;
+									/* fall through */
 								case 3:
 									pix |= ((pcx_plane[j][2] >> k) & 0x01) << 2;
+									/* fall through */
 								case 2:
 									pix |= ((pcx_plane[j][1] >> k) & 0x01) << 1;
+									/* fall through */
 								case 1:
 									pix |= ((pcx_plane[j][0] >> k) & 0x01);
 									break;

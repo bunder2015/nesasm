@@ -573,6 +573,7 @@ getoperand(int *ip, int flag, int last_char)
 			(*ip)++;
 			break;
 		}
+		/* fall through */
 
 	default:
 		/* other */
@@ -623,19 +624,24 @@ getoperand(int *ip, int flag, int last_char)
 					break;
 				}
 				code++;
+				/* fall through */
 			case '+':		/* + = 4 */
 				code++;
+				/* fall through */
 			case ']':		/* ] = 3 */
 				code++;
 				if (prlnbuf[*ip + 1] == '.') {
 					end = 1;
 					break;
 				}
+				/* fall through */
 			case 'X':		/* X = 2 */
 				code++;
+				/* fall through */
 			case 'Y':		/* Y = 1 */
 				code++;
 				code <<= 4;
+				/* fall through */
 			case ' ':
 			case '\t':
 				(*ip)++;

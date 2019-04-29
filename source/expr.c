@@ -258,6 +258,7 @@ cont:
 						return (0);
 					break;
 				}
+				/* fall through */
 
 			/* modulo, mul, add, div, and, xor, or */
 			case '+':
@@ -302,6 +303,7 @@ cont:
 					expr = (unsigned char *)expr_stack[func_idx];
 					break;
 				}
+				/* fall through */
 			case ';':
 				end = 1;
 				break;

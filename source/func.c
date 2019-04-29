@@ -34,7 +34,7 @@ do_func(int *ip)
 			switch (lablptr->type) {
 			case MACRO:
 				fatal_error("Symbol already used by a macro!");
-
+				return;
 			case FUNC:
 				fatal_error("Function already defined!");
 				return;
@@ -154,6 +154,7 @@ func_extract(int ip)
 			arg = c - '1';
 			if (max_arg < arg)
 				max_arg = arg;
+		    /* fall through */
 
 		/* other */
 		default:

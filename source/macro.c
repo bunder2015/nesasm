@@ -174,6 +174,7 @@ macro_getargs(int ip)
 		/* string */
 		case '{':
 			c = '}';
+			/* fall through */
 		case '\"':
 			i = 0;
 			if (c == '\"')
@@ -243,6 +244,7 @@ macro_getargs(int ip)
 				ip = SFIELD;
 				break;
 			}
+			/* fall through */
 
 		/* other */
 		default:
@@ -396,6 +398,7 @@ macro_getargtype(char *arg)
 	case 'Y':
 		if (*arg == '\0')
 			return (ARG_REG);
+		/* fall through */
 
 	default:
 		/* symbol */
