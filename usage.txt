@@ -364,15 +364,27 @@
                   the compilation. Can be used within a macro for argument
                   error detection.
 
-        INESPRG - Specifies the number of 16k prg banks.
+        INESPRG - Specifies the number of 16k PRG ROM banks.
 
-        INESCHR - Specifies the number of 8k chr banks.
+	INESPRS - Specifies the number of 8k PRG RAM banks.
+
+        INESCHR - Specifies the number of 8k CHR ROM banks (0 implies 8k CHR
+		  RAM in iNES v1).
 
         INESMAP - Specifies the NES mapper used.
 
         INESMIR - Specifies VRAM mirroring of the banks. Refer to iNES header
                   document (neshdr20.txt).
 
+	INESBAT - Specifies battery-backed PRG RAM (save WRAM).
+
+	INESREG - Specifies TV Region (0 = NTSC, 1 = PAL).
+
+	INESBUS - Specifies bus conflicts are possible.  Some mappers may need
+		  this to be set for proper emulation.
+
+	INESFSM - Specifies four-screen mirroring.  This bit can be set
+		  independantly to INESMIR.
 
 --
 

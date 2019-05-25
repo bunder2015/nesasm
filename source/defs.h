@@ -97,6 +97,11 @@
 #define P_PGROUP	47	// .procgroup
 #define P_ENDPG		48	// .endprocgroup
 #define P_CALL		49	// .call
+#define P_INESBAT	50	// .inesbat
+#define P_INESREG	51	// .inesreg
+#define P_INESPRS	52	// .inesprs
+#define P_INESBUS	53	// .inesbus
+#define P_INESFSM	54	// .inesfsm
 
 /* symbol flags */
 #define MDEF	3	/* multiply defined */
