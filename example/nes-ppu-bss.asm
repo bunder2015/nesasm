@@ -1,0 +1,512 @@
+SPR0Y:
+	.ds 1
+SPR0TILE:
+	.ds 1
+SPR0ATTR:
+	.ds 1
+SPR0X:
+	.ds 1
+SPR1Y:
+	.ds 1
+SPR1TILE:
+	.ds 1
+SPR1ATTR:
+	.ds 1
+SPR1X:
+	.ds 1
+SPR2Y:
+	.ds 1
+SPR2TILE:
+	.ds 1
+SPR2ATTR:
+	.ds 1
+SPR2X:
+	.ds 1
+SPR3Y:
+	.ds 1
+SPR3TILE:
+	.ds 1
+SPR3ATTR:
+	.ds 1
+SPR3X:
+	.ds 1
+SPR4Y:
+	.ds 1
+SPR4TILE:
+	.ds 1
+SPR4ATTR:
+	.ds 1
+SPR4X:
+	.ds 1
+SPR5Y:
+	.ds 1
+SPR5TILE:
+	.ds 1
+SPR5ATTR:
+	.ds 1
+SPR5X:
+	.ds 1
+SPR6Y:
+	.ds 1
+SPR6TILE:
+	.ds 1
+SPR6ATTR:
+	.ds 1
+SPR6X:
+	.ds 1
+SPR7Y:
+	.ds 1
+SPR7TILE:
+	.ds 1
+SPR7ATTR:
+	.ds 1
+SPR7X:
+	.ds 1
+SPR8Y:
+	.ds 1
+SPR8TILE:
+	.ds 1
+SPR8ATTR:
+	.ds 1
+SPR8X:
+	.ds 1
+SPR9Y:
+	.ds 1
+SPR9TILE:
+	.ds 1
+SPR9ATTR:
+	.ds 1
+SPR9X:
+	.ds 1
+SPR10Y:
+	.ds 1
+SPR10TILE:
+	.ds 1
+SPR10ATTR:
+	.ds 1
+SPR10X:
+	.ds 1
+SPR11Y:
+	.ds 1
+SPR11TILE:
+	.ds 1
+SPR11ATTR:
+	.ds 1
+SPR11X:
+	.ds 1
+SPR12Y:
+	.ds 1
+SPR12TILE:
+	.ds 1
+SPR12ATTR:
+	.ds 1
+SPR12X:
+	.ds 1
+SPR13Y:
+	.ds 1
+SPR13TILE:
+	.ds 1
+SPR13ATTR:
+	.ds 1
+SPR13X:
+	.ds 1
+SPR14Y:
+	.ds 1
+SPR14TILE:
+	.ds 1
+SPR14ATTR:
+	.ds 1
+SPR14X:
+	.ds 1
+SPR15Y:
+	.ds 1
+SPR15TILE:
+	.ds 1
+SPR15ATTR:
+	.ds 1
+SPR15X:
+	.ds 1
+SPR16Y:
+	.ds 1
+SPR16TILE:
+	.ds 1
+SPR16ATTR:
+	.ds 1
+SPR16X:
+	.ds 1
+SPR17Y:
+	.ds 1
+SPR17TILE:
+	.ds 1
+SPR17ATTR:
+	.ds 1
+SPR17X:
+	.ds 1
+SPR18Y:
+	.ds 1
+SPR18TILE:
+	.ds 1
+SPR18ATTR:
+	.ds 1
+SPR18X:
+	.ds 1
+SPR19Y:
+	.ds 1
+SPR19TILE:
+	.ds 1
+SPR19ATTR:
+	.ds 1
+SPR19X:
+	.ds 1
+SPR20Y:
+	.ds 1
+SPR20TILE:
+	.ds 1
+SPR20ATTR:
+	.ds 1
+SPR20X:
+	.ds 1
+SPR21Y:
+	.ds 1
+SPR21TILE:
+	.ds 1
+SPR21ATTR:
+	.ds 1
+SPR21X:
+	.ds 1
+SPR22Y:
+	.ds 1
+SPR22TILE:
+	.ds 1
+SPR22ATTR:
+	.ds 1
+SPR22X:
+	.ds 1
+SPR23Y:
+	.ds 1
+SPR23TILE:
+	.ds 1
+SPR23ATTR:
+	.ds 1
+SPR23X:
+	.ds 1
+SPR24Y:
+	.ds 1
+SPR24TILE:
+	.ds 1
+SPR24ATTR:
+	.ds 1
+SPR24X:
+	.ds 1
+SPR25Y:
+	.ds 1
+SPR25TILE:
+	.ds 1
+SPR25ATTR:
+	.ds 1
+SPR25X:
+	.ds 1
+SPR26Y:
+	.ds 1
+SPR26TILE:
+	.ds 1
+SPR26ATTR:
+	.ds 1
+SPR26X:
+	.ds 1
+SPR27Y:
+	.ds 1
+SPR27TILE:
+	.ds 1
+SPR27ATTR:
+	.ds 1
+SPR27X:
+	.ds 1
+SPR28Y:
+	.ds 1
+SPR28TILE:
+	.ds 1
+SPR28ATTR:
+	.ds 1
+SPR28X:
+	.ds 1
+SPR29Y:
+	.ds 1
+SPR29TILE:
+	.ds 1
+SPR29ATTR:
+	.ds 1
+SPR29X:
+	.ds 1
+SPR30Y:
+	.ds 1
+SPR30TILE:
+	.ds 1
+SPR30ATTR:
+	.ds 1
+SPR30X:
+	.ds 1
+SPR31Y:
+	.ds 1
+SPR31TILE:
+	.ds 1
+SPR31ATTR:
+	.ds 1
+SPR31X:
+	.ds 1
+SPR32Y:
+	.ds 1
+SPR32TILE:
+	.ds 1
+SPR32ATTR:
+	.ds 1
+SPR32X:
+	.ds 1
+SPR33Y:
+	.ds 1
+SPR33TILE:
+	.ds 1
+SPR33ATTR:
+	.ds 1
+SPR33X:
+	.ds 1
+SPR34Y:
+	.ds 1
+SPR34TILE:
+	.ds 1
+SPR34ATTR:
+	.ds 1
+SPR34X:
+	.ds 1
+SPR35Y:
+	.ds 1
+SPR35TILE:
+	.ds 1
+SPR35ATTR:
+	.ds 1
+SPR35X:
+	.ds 1
+SPR36Y:
+	.ds 1
+SPR36TILE:
+	.ds 1
+SPR36ATTR:
+	.ds 1
+SPR36X:
+	.ds 1
+SPR37Y:
+	.ds 1
+SPR37TILE:
+	.ds 1
+SPR37ATTR:
+	.ds 1
+SPR37X:
+	.ds 1
+SPR38Y:
+	.ds 1
+SPR38TILE:
+	.ds 1
+SPR38ATTR:
+	.ds 1
+SPR38X:
+	.ds 1
+SPR39Y:
+	.ds 1
+SPR39TILE:
+	.ds 1
+SPR39ATTR:
+	.ds 1
+SPR39X:
+	.ds 1
+SPR40Y:
+	.ds 1
+SPR40TILE:
+	.ds 1
+SPR40ATTR:
+	.ds 1
+SPR40X:
+	.ds 1
+SPR41Y:
+	.ds 1
+SPR41TILE:
+	.ds 1
+SPR41ATTR:
+	.ds 1
+SPR41X:
+	.ds 1
+SPR42Y:
+	.ds 1
+SPR42TILE:
+	.ds 1
+SPR42ATTR:
+	.ds 1
+SPR42X:
+	.ds 1
+SPR43Y:
+	.ds 1
+SPR43TILE:
+	.ds 1
+SPR43ATTR:
+	.ds 1
+SPR43X:
+	.ds 1
+SPR44Y:
+	.ds 1
+SPR44TILE:
+	.ds 1
+SPR44ATTR:
+	.ds 1
+SPR44X:
+	.ds 1
+SPR45Y:
+	.ds 1
+SPR45TILE:
+	.ds 1
+SPR45ATTR:
+	.ds 1
+SPR45X:
+	.ds 1
+SPR46Y:
+	.ds 1
+SPR46TILE:
+	.ds 1
+SPR46ATTR:
+	.ds 1
+SPR46X:
+	.ds 1
+SPR47Y:
+	.ds 1
+SPR47TILE:
+	.ds 1
+SPR47ATTR:
+	.ds 1
+SPR47X:
+	.ds 1
+SPR48Y:
+	.ds 1
+SPR48TILE:
+	.ds 1
+SPR48ATTR:
+	.ds 1
+SPR48X:
+	.ds 1
+SPR49Y:
+	.ds 1
+SPR49TILE:
+	.ds 1
+SPR49ATTR:
+	.ds 1
+SPR49X:
+	.ds 1
+SPR50Y:
+	.ds 1
+SPR50TILE:
+	.ds 1
+SPR50ATTR:
+	.ds 1
+SPR50X:
+	.ds 1
+SPR51Y:
+	.ds 1
+SPR51TILE:
+	.ds 1
+SPR51ATTR:
+	.ds 1
+SPR51X:
+	.ds 1
+SPR52Y:
+	.ds 1
+SPR52TILE:
+	.ds 1
+SPR52ATTR:
+	.ds 1
+SPR52X:
+	.ds 1
+SPR53Y:
+	.ds 1
+SPR53TILE:
+	.ds 1
+SPR53ATTR:
+	.ds 1
+SPR53X:
+	.ds 1
+SPR54Y:
+	.ds 1
+SPR54TILE:
+	.ds 1
+SPR54ATTR:
+	.ds 1
+SPR54X:
+	.ds 1
+SPR55Y:
+	.ds 1
+SPR55TILE:
+	.ds 1
+SPR55ATTR:
+	.ds 1
+SPR55X:
+	.ds 1
+SPR56Y:
+	.ds 1
+SPR56TILE:
+	.ds 1
+SPR56ATTR:
+	.ds 1
+SPR56X:
+	.ds 1
+SPR57Y:
+	.ds 1
+SPR57TILE:
+	.ds 1
+SPR57ATTR:
+	.ds 1
+SPR57X:
+	.ds 1
+SPR58Y:
+	.ds 1
+SPR58TILE:
+	.ds 1
+SPR58ATTR:
+	.ds 1
+SPR58X:
+	.ds 1
+SPR59Y:
+	.ds 1
+SPR59TILE:
+	.ds 1
+SPR59ATTR:
+	.ds 1
+SPR59X:
+	.ds 1
+SPR60Y:
+	.ds 1
+SPR60TILE:
+	.ds 1
+SPR60ATTR:
+	.ds 1
+SPR60X:
+	.ds 1
+SPR61Y:
+	.ds 1
+SPR61TILE:
+	.ds 1
+SPR61ATTR:
+	.ds 1
+SPR61X:
+	.ds 1
+SPR62Y:
+	.ds 1
+SPR62TILE:
+	.ds 1
+SPR62ATTR:
+	.ds 1
+SPR62X:
+	.ds 1
+SPR63Y:
+	.ds 1
+SPR63TILE:
+	.ds 1
+SPR63ATTR:
+	.ds 1
+SPR63X:
+	.ds 1
