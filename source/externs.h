@@ -1,10 +1,11 @@
 extern unsigned char rom[128][8192];
 extern unsigned char map[128][8192];
 extern char bank_name[128][64];
-extern int  bank_loccnt[4][256];
-extern int  bank_page[4][256];
+extern int  bank_loccnt[5][256];
+extern int  bank_page[5][256];
 extern int max_zp;		/* higher used address in zero page */
 extern int max_bss;		/* higher used address in ram */
+extern int max_sram;		/* higher used address in sram */
 extern int max_bank;	/* last bank used */
 extern int data_loccnt;	/* data location counter */
 extern int data_size;	/* size of binary output (in bytes) */
@@ -17,7 +18,7 @@ extern int rom_limit;	/* rom max. size in bytes */
 extern int page;	/* page */
 extern int rsbase;	/* .rs counter */
 extern int section;	/* current section: S_ZP, S_BSS, S_CODE or S_DATA */
-extern int section_bank[4];	/* current bank for each section */
+extern int section_bank[5];	/* current bank for each section */
 extern int in_if;	/* true if in a '.if' statement */
 extern int if_expr;	/* set when parsing an .if expression */
 extern int if_level;	/* level of nested .if's */

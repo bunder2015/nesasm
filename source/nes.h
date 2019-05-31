@@ -48,8 +48,11 @@ struct t_machine nes = {
 	"NES_INCLUDE", /* include_env */
 	0x100,  /* zp_limit */
 	0x800,  /* ram_limit */
+	0x8000,	/* sram_limit */
 	0,      /* ram_base */
+	0x6000,	/* sram_base */
 	0,      /* ram_page */
+	3,	/* sram_page */
 	RESERVED_BANK, /* ram_bank */
 	NULL,       /* inst */
 	nes_pseudo, /* pseudo_inst */

@@ -1,10 +1,11 @@
 unsigned char rom[128][8192];
 unsigned char map[128][8192];
 char bank_name[128][64];
-int  bank_loccnt[4][256];
-int  bank_page[4][256];
+int  bank_loccnt[5][256];
+int  bank_page[5][256];
 int max_zp;		/* higher used address in zero page */
 int max_bss;	/* higher used address in ram */
+int max_sram;	/* higher used address in sram */
 int max_bank;	/* last bank used */
 int data_loccnt;	/* data location counter */
 int data_size;		/* size of binary output (in bytes) */
@@ -16,8 +17,8 @@ int rom_limit;	/* bank limit */
 int bank_limit;	/* rom max. size in bytes */
 int page;	/* page */
 int rsbase;	/* .rs counter */
-int section;	/* current section: S_ZP, S_BSS, S_CODE or S_DATA */
-int section_bank[4];	/* current bank for each section */
+int section;	/* current section: S_ZP, S_BSS, S_SRAM, S_CODE or S_DATA */
+int section_bank[5];	/* current bank for each section */
 int stop_pass;		/* stop the program; set by fatal_error() */
 int errcnt;			/* error counter */
 struct t_machine *machine;

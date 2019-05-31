@@ -42,10 +42,10 @@ char  out_fname[128];	/* output */
 char  bin_fname[128];	/* binary */
 char  lst_fname[128];	/* listing */
 char  fns_fname[128];	/* functions */
-char *prg_name;	/* program name */
-FILE *in_fp;	/* file pointers, input */
-FILE *lst_fp;	/* listing */
-char  section_name[4][8] = { "  ZP", " BSS", "CODE", "DATA" };
+char *prg_name;		/* program name */
+FILE *in_fp;		/* file pointers, input */
+FILE *lst_fp;		/* listing */
+char  section_name[5][8] = { "  ZP", " BSS", "SRAM", "CODE", "DATA" };
 int   dump_seg;
 int   header_opt;
 int   run_opt;
@@ -93,7 +93,7 @@ main(int argc, char **argv)
 	file = 0;
 
 	/* display assembler version message */
-    printf("%s\n\n", machine->asm_title);
+	printf("%s\n\n", machine->asm_title);
 
 	/* parse command line */
 	if (argc > 1) {
@@ -202,6 +202,7 @@ main(int argc, char **argv)
 	/* predefined symbols */
 	lablset("MAGICKIT", 1);
 	lablset("_bss_end", 0);
+	lablset("_sram_end", 0);
 	lablset("_bank_base", 0);
 	lablset("_nb_bank", 1);
 	lablset("_call_bank", 0);
@@ -209,6 +210,7 @@ main(int argc, char **argv)
 	/* init global variables */
 	max_zp = 0x00;
 	max_bss = 0x0200;
+	max_sram = 0x6000;
 	max_bank = 0;
 	rom_limit = 0x100000;		/* 1MB */
 	bank_limit = 0x7F;
@@ -259,6 +261,11 @@ main(int argc, char **argv)
 		bank_page[S_BSS][ram_bank]   = machine->ram_page;
 		bank_loccnt[S_BSS][ram_bank] = 0x0200;
 
+		/* .sram */
+		section_bank[S_SRAM]	     = ram_bank;
+		bank_page[S_SRAM][ram_bank]  = machine->sram_page;
+		bank_loccnt[S_SRAM][ram_bank] = 0x6000;
+
 		/* .code */
 		section_bank[S_CODE]         = 0x00;
 		bank_page[S_CODE][0x00]      = 0x07;
@@ -275,7 +282,7 @@ main(int argc, char **argv)
 		/* assemble */
 		while (readline() != -1) {
 			assemble();
-			if (loccnt > 0x2000) {
+			if (loccnt > 0x2000 && (loccnt < 0x6000 || loccnt > 0x8000)) {
 				if (proc_ptr == NULL)
 					fatal_error("Bank overflow, offset > $1FFF!");
 				else {
@@ -307,6 +314,7 @@ main(int argc, char **argv)
 		/* update predefined symbols */
 		if (pass == FIRST_PASS) {
 			lablset("_bss_end", machine->ram_base + max_bss);
+			lablset("_sram_end", max_sram);
 			lablset("_bank_base", bank_base);
 			lablset("_nb_bank", max_bank + 1);
 		}
@@ -421,6 +429,7 @@ show_seg_usage(void)
 	int rom_used;
 	int rom_free;
 	int ram_base = machine->ram_base;
+	int sram_base = machine->sram_base;
 
 	printf("segment usage:\n");
 	printf("\n");
@@ -441,6 +450,15 @@ show_seg_usage(void)
 		start = ram_base + 0x200;
 		stop  = ram_base + (max_bss - 1);
 		printf("     BSS    $%04X-$%04X  [%4i]\n", start, stop, stop - start + 1);
+	}
+
+	/* sram usage */
+	if (max_sram < 0x6001)
+		printf("    SRAM    -\n");
+	else {
+		start = sram_base;
+		stop  = max_sram - 1;
+		printf("    SRAM    $%04X-$%04X  [%4i]\n", start, stop, stop - start + 1);
 	}
 
 	/* bank usage */
@@ -501,9 +519,9 @@ show_seg_usage(void)
 			/* display section infos */
 			printf("    %s    $%04X-$%04X  [%4i]\n",
 					section_name[section],	/* section name */
-				    start + page,			/* starting address */
-					addr  + page - 1,		/* end address */
-					addr  - start);			/* size */
+					start + page,		/* starting address */
+					addr  + page - 1,	/* end address */
+					addr  - start);		/* size */
 		}
 	}
 

@@ -113,9 +113,9 @@ loadlc(int offset, int pos)
 			hexcon(2, bank);
 			prlnbuf[i++] = hex[1];
 			prlnbuf[i++] = hex[2];
+			offset += page << 13;
 		}
 		prlnbuf[i++] = ':';
-		offset += page << 13;
 	}
 	hexcon(4, offset);
 	prlnbuf[i++] = hex[1];

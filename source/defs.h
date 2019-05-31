@@ -37,8 +37,9 @@
 /* section types */
 #define S_ZP	0
 #define S_BSS	1
-#define S_CODE	2
-#define S_DATA	3
+#define S_SRAM	2
+#define S_CODE	3
+#define S_DATA	4
 
 /* assembler options */
 #define OPT_LIST	 0
@@ -102,6 +103,7 @@
 #define P_INESPRS	52	// .inesprs
 #define P_INESBUS	53	// .inesbus
 #define P_INESFSM	54	// .inesfsm
+#define P_SRAM		55	// .sram
 
 /* symbol flags */
 #define MDEF	3	/* multiply defined */
@@ -122,15 +124,15 @@
 #define CLASS8		0x0400000
 #define CLASS9		0x0800000
 #define CLASS10		0x1000000
-#define ACC			0x0000001
-#define IMM			0x0000002
-#define ZP			0x0000004
+#define ACC		0x0000001
+#define IMM		0x0000002
+#define ZP		0x0000004
 #define ZP_X		0x0000008
 #define ZP_Y		0x0000010
 #define ZP_IND		0x0000020
 #define ZP_IND_X	0x0000040
 #define ZP_IND_Y	0x0000080
-#define ABS			0x0000100
+#define ABS		0x0000100
 #define ABS_X		0x0000200
 #define ABS_Y		0x0000400
 #define ABS_IND		0x0000800
@@ -223,8 +225,11 @@ typedef struct t_machine {
 	char *include_env;
 	unsigned int zp_limit;
 	unsigned int ram_limit;
+	unsigned int sram_limit;
 	unsigned int ram_base;
+	unsigned int sram_base;
 	unsigned int ram_page;
+	unsigned int sram_page;
 	unsigned int ram_bank;
 	struct t_opcode *inst;
 	struct t_opcode *pseudo_inst;

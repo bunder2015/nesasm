@@ -338,12 +338,14 @@
 
         BSS     - Select the RAM section ($0200-$07FF).
 
+	SRAM	- Select the SRAM section ($6000-7FFF).
+
         CODE    - Select the program code section.
 
         DATA    - Select the program data section.
 
-                  Note: In ZP and BSS sections you can only allocate storage,
-                  ----  you can *not* store initial values.
+                  Note: In ZP, BSS, and SRAM sections you can only allocate
+		  storage, you can *not* store initial values.
 
         IF      - Conditional assembly directive. This directive will evaluate
                   the supplied expression and then turn conditional assembly
@@ -371,10 +373,13 @@
         INESCHR - Specifies the number of 8k CHR ROM banks (0 implies 8k CHR
 		  RAM in iNES v1).
 
-        INESMAP - Specifies the NES mapper used.
+        INESMAP - Specifies the iNES mapper used.
 
         INESMIR - Specifies VRAM mirroring of the banks. Refer to iNES header
                   document (neshdr20.txt).
+
+	INESFSM - Specifies four-screen mirroring.  This bit can be set
+		  independantly to INESMIR.
 
 	INESBAT - Specifies battery-backed PRG RAM (save WRAM).
 
@@ -382,9 +387,6 @@
 
 	INESBUS - Specifies bus conflicts are possible.  Some mappers may need
 		  this to be set for proper emulation.
-
-	INESFSM - Specifies four-screen mirroring.  This bit can be set
-		  independantly to INESMIR.
 
 --
 
