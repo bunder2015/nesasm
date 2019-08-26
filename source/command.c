@@ -459,7 +459,14 @@ do_org(int *ip)
 	}
 
 	/* set location counter */
-	loccnt = (value & 0x1FFF);
+	switch (section) {
+	case S_SRAM:
+		loccnt = (value & 0x7FFF);
+		break;
+	default:
+		loccnt = (value & 0x1FFF);
+		break;
+	}
 
 	/* set label value if there was one */
 	labldef(loccnt, 1);
